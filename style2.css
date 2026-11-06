@@ -1,0 +1,84 @@
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background-color: #f2f5fa;
+}
+/* Header */
+header {
+background-color: #243b64;
+color: white;
+text-align: center;
+padding: 25px;
+}
+/* Navigation */
+
+nav {
+background-color: #172a48;
+text-align: center;
+padding: 15px;
+}
+nav a {
+color: white;
+text-decoration: none;
+padding: 15px;
+font-weight: bold;
+}
+nav a:hover {
+background-color: #496b9e;
+}
+/* Page Content */
+.content {
+width: 75%;
+min-height: 300px;
+margin: 30px auto;
+padding: 25px;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 0 8px #ccc;
+}
+.content h2 {
+color: #243b64;
+}
+.content img {
+width: 100%;
+max-width: 500px;
+display: block;
+margin: 20px auto;
+border-radius: 8px;
+}
+/* Contact Form */
+label {
+
+display: block;
+margin-top: 12px;
+}
+input, textarea {
+width: 100%;
+padding: 10px;
+margin-top: 5px;
+box-sizing: border-box;
+border: 1px solid #aaa;
+border-radius: 5px;
+}
+textarea {
+height: 100px;
+}
+button {
+margin-top: 15px;
+padding: 10px 20px;
+background-color: #243b64;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+button:hover {
+background-color: #496b9e;
+}
+/* Footer */
+footer {
+background-color: #243b64;
+color: white;
+text-align: center;
+padding: 15px;
+}

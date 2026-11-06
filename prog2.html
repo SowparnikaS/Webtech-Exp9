@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cake Shop</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .shop {
+            background: #b90000;
+            color: white;
+            padding: 10px;
+            margin: 10px auto;
+            width: 80%;
+            font-weight: bold;
+        }
+
+        .cakes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .cake {
+            width: 130px;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+        .cake img {
+            width: 100px;
+            height: 85px;
+            object-fit: cover;
+        }
+
+        .order {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .order input {
+            width: 95%;
+            padding: 7px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #1674df;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: navy;
+            text-align: center;
+        }
+
+        #total {
+            color: red;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shop">CAKE SHOP</div>
+
+    <div class="cakes">
+        <div class="cake">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSou7FTOxNDo3yyp4gwvj5qTnsMAE5pf66IsazAQBxy4g&s=10" alt="Color Cake">
+            <p>Color Cake - ₹300</p>
+        </div>
+
+        <div class="cake">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyi2wq6fbZi39WFLo8KTZ6-95KitwVk_l0WHEUKAxdoIDxUb-7nlqh6ZE&s=10" alt="Brown Cake">
+            <p>Brown Cake - ₹300</p>
+        </div>
+
+        <div class="cake">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEwdZ3q1KYEHFmFKAm2roS6RYKMyR1wUrjbxIIrJ43g&s=10" alt="Milky Cake">
+            <p>Milky Cake - ₹250</p>
+        </div>
+
+        <div class="cake">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVyKqwNMV34N5eDCZWIV0Tas2IHF2YxQ6q_3BFhHqeCjZiwXZuJJaXoWwi&s=10" alt="Black Forest Cake">
+            <p>Black Forest Cake - ₹250</p>
+        </div>
+    </div>
+
+    <div class="order">
+        <h2>Order Cake</h2>
+
+        <label>Color Cake (Quantity)</label>
+        <input type="number" id="q1" value="2" min="0" step="1">
+
+        <label>Brown Cake (Quantity)</label>
+        <input type="number" id="q2" value="1" min="0" step="1">
+
+        <label>Milky Cake (Quantity)</label>
+        <input type="number" id="q3" value="2" min="0" step="1">
+
+        <label>Black Forest Cake (Quantity)</label>
+        <input type="number" id="q4" value="1" min="0" step="1">
+
+        <button type="button" id="place">Place Order</button>
+
+        <hr>
+
+        <h3>Purchase Order Bill</h3>
+        <p>Total Price: <span id="total">₹1650</span></p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#place").on("click", function () {
+                var q1 = $("#q1").val();
+                var q2 = $("#q2").val();
+                var q3 = $("#q3").val();
+                var q4 = $("#q4").val();
+
+                var quantities = [q1, q2, q3, q4];
+
+                for (var i = 0; i < quantities.length; i++) {
+                    if (
+                        quantities[i].trim() === "" ||
+                        !Number.isInteger(Number(quantities[i])) ||
+                        Number(quantities[i]) < 0
+                    ) {
+                        alert("Enter valid whole-number quantities");
+                        return;
+                    }
+                }
+
+                q1 = Number(q1);
+                q2 = Number(q2);
+                q3 = Number(q3);
+                q4 = Number(q4);
+
+                var total = (q1 * 300) +
+                            (q2 * 300) +
+                            (q3 * 250) +
+                            (q4 * 250);
+
+                $("#total").text("₹" + total);
+
+                alert("Order placed successfully!\nTotal Price: ₹" + total);
+            });
+        });
+    </script>
+</body>
+</html>

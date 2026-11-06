@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        h3 {
+            background: black;
+            color: white;
+            padding: 10px;
+        }
+
+        input {
+            width: 70px;
+            margin: 8px;
+        }
+
+        button {
+            background: navy;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .box {
+            display: inline-block;
+            padding: 15px;
+            margin: 8px;
+            color: white;
+        }
+
+        .rent { background: blue; }
+        .accessories { background: green; }
+        .emergency { background: blue; }
+        .saving { background: deeppink; }
+    </style>
+</head>
+
+<body>
+    <h3>Budget Calculator App</h3>
+
+    <p>Enter Amount that you want to Manage</p>
+    <input type="number" id="amount" value="15000" min="0">
+
+    <p>How would you like to divide your money?</p>
+
+    Room Rent(%):
+    <input type="number" id="rent" value="50" min="0">
+
+    Accessories(%):
+    <input type="number" id="accessories" value="20" min="0">
+
+    Emergency(%):
+    <input type="number" id="emergency" value="20" min="0">
+
+    Saving(%):
+    <input type="number" id="saving" value="10" min="0">
+
+    <br><br>
+
+    <button id="evaluate">Evaluate My Money</button>
+
+    <br><br>
+
+    <div class="box rent">Room Rent<br><span id="r1">₹0</span></div>
+    <div class="box accessories">Accessories<br><span id="r2">₹0</span></div>
+    <div class="box emergency">Emergency<br><span id="r3">₹0</span></div>
+    <div class="box saving">Saving<br><span id="r4">₹0</span></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#evaluate").click(function () {
+                var amount = Number($("#amount").val());
+
+                var rent = Number($("#rent").val());
+                var accessories = Number($("#accessories").val());
+                var emergency = Number($("#emergency").val());
+                var saving = Number($("#saving").val());
+
+                if ($("#amount").val() === "" || amount < 0 ||
+                    !Number.isFinite(amount)) {
+                    alert("Enter a valid amount");
+                    return;
+                }
+
+                if ([rent, accessories, emergency, saving].some(
+                    p => !Number.isFinite(p) || p < 0
+                )) {
+                    alert("Enter valid non-negative percentages");
+                    return;
+                }
+
+                var total = rent + accessories + emergency + saving;
+
+                if (total !== 100) {
+                    alert("The percentages must add up to 100%");
+                    return;
+                }
+
+                $("#r1").text("₹" + (amount * rent / 100).toFixed(2));
+                $("#r2").text("₹" + (amount * accessories / 100).toFixed(2));
+                $("#r3").text("₹" + (amount * emergency / 100).toFixed(2));
+                $("#r4").text("₹" + (amount * saving / 100).toFixed(2));
+            });
+        });
+    </script>
+</body>
+</html>
